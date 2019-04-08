@@ -1,0 +1,26 @@
+{
+	"elasticsearch_url":"192.168.1.18:9200",
+	"alerts":{
+		"metrics.contra":{
+			     "Comment Ratio" : {"lt": 0.998 },
+				"Test coverage " : {"lt": 0.998 },
+			        "Complexity" : {"lt": 0.998 },
+				 "Comment Ratio" : {"lt": 0.998 },
+	  		   "Non-Bug Density" : {"lt": 0.998 },
+		   "Duplication Density" : {"lt": 0.998 },
+			"Non blocking files" : {"lt": 0.998 }
+		},
+		"factors.contra":{
+			      "Code Quality" : {"lt": 0.998 },
+			   	 "Blocking Code" : {"lt": 0.998 }
+		},
+		"strategic_indicators.contra":{
+			          "Blocking" : {"lt": 0.998 },
+			   "Product Quality" : {"lt": 0.998 }
+		}
+	},
+	"refresh_rate":86400,
+	"qralert_console_port":5051,
+	"notification_service":"192.168.1.18:8888/api/notifyAlert"
+	
+}

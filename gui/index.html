@@ -1,0 +1,67 @@
+<!doctype html>
+<html >
+<head>		
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+
+<body ng-app="project" ng-controller="MyCtrl">	
+	<div  class="panel panel-default" style="margin:10px">
+		<div class="panel-body">
+		<h1>QrAlert console</h1>
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">ID</th>
+		      <th scope="col">Type</th>
+		      <th scope="col">Name</th>
+		      <th scope="col">Value</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr ng-repeat="alert in data track by $index">
+		      <th scope="row">{{alert.element.id}}</th>
+		      <td>{{alert.element.type}}</td>
+		      <td>{{alert.element.name}}</td>
+		      <td>{{alert.element.artefacts.value}} (Threshold: {{alert.element.threshold}})</td>
+		    </tr>
+		    
+		  </tbody>
+		</table>
+		</div>
+	</div>
+</body>
+
+
+
+
+
+
+<script>
+var app = angular.module("project", ["ngRoute"]);
+
+app.controller('MyCtrl', function($scope, $location, $http, $timeout) {
+	$scope.data = {}
+	$scope.data="loading..."
+
+	
+ 	$http({
+		method:"GET",
+		url: window.location + '/alerts', 
+	}).then(function (response) {
+		console.log(response.data);
+		$scope.data=response.data
+
+	},function(response) {
+		console.log(response) 
+		console.log("failed");
+	});
+})
+ 
+</script>
+</html>
